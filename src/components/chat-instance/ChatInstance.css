@@ -1,0 +1,13 @@
+.chat-instance-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    border: 2px black;
+    height: 8vh;
+    border-radius: 5px;
+    margin-top: 1vh;
+}
+
+.chat-instance-container:hover {
+    background-color: rgb(113, 144, 247);
+}

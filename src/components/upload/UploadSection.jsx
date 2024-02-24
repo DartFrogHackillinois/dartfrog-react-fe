@@ -2,8 +2,9 @@ import React, { Fragment, useState } from 'react';
 import './UploadSection.css';
 import { useDropzone } from 'react-dropzone';
 import app from '../../firebaseconfig';
-import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getFirestore, where, query, getDocs } from 'firebase/firestore';
 import ChatInstance from '../chat-instance/ChatInstance';
+import { files } from '../sign-in/SignIn';
 const db = getFirestore(app);
 
 function UploadSection() {
@@ -36,23 +37,25 @@ function UploadSection() {
         },
     });
 
-    const chats =
-        [{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-        ,{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-            , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}]
+    const chats = files;
+
+    // const chats =
+    //     [{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //     ,{id: "Component9", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component10", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component11", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component12", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component13", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component14", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component15", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+    //         , {id: "Component16", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}]
 
     return (
         <div className="upload-section">

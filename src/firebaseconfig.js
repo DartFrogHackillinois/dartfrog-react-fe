@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
     // Your Firebase configuration
-    apiKey: process.env.APIKEY, // Make sure the environment variable is correctly set
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY, // Make sure the environment variable is correctly set
     authDomain: "dartfrog-ecb02.firebaseapp.com",
     projectId: "dartfrog-ecb02",
     storageBucket: "dartfrog-ecb02.appspot.com",

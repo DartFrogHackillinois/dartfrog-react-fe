@@ -19,12 +19,27 @@ function SignIn({ onSignIn }) {
     };
 
     return (
-        <div className="sign-in-overlay">
-            <div className="sign-in-box">
-                <button onClick={handleSignIn}>Sign in with Google</button>
+        <div className="dartfrog-signin-page">
+            {/* Two Dynamic Circular Background Elements with separate classes for distinct animations */}
+            <div className="dynamic-circle circle-one"></div>
+            <div className="dynamic-circle circle-two"></div>
+
+            <div className="dartfrog-signin-container">
+                <div className="dartfrog-signin-header">
+                    <h1>Welcome to DartFrog</h1>
+                    <p>Start your journey with us</p>
+                </div>
+                <div className="dartfrog-signin-content">
+                    <button onClick={onSignIn} className="google-signin">Sign in with Google</button>
+                </div>
+                <div className="dartfrog-signin-footer">
+                    <p>By signing in, you agree to our Terms of Service and Privacy Policy.</p>
+                </div>
             </div>
         </div>
     );
+
+
 }
 
 export default SignIn;

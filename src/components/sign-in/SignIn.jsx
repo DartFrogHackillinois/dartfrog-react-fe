@@ -20,9 +20,14 @@ function SignIn({ onSignIn }) {
 
     return (
         <div className="dartfrog-signin-page">
-            {/* Two Dynamic Circular Background Elements with separate classes for distinct animations */}
             <div className="dynamic-circle circle-one"></div>
             <div className="dynamic-circle circle-two"></div>
+            <div className="dynamic-circle circle-three"></div>
+            <div className="dynamic-circle circle-four"></div>
+            <div className="dynamic-circle circle-five"></div>
+            <div className="dynamic-circle circle-six"></div>
+            <div className="dynamic-circle circle-seven"></div>
+            <div className="dynamic-circle circle-eight"></div>
 
             <div className="dartfrog-signin-container">
                 <div className="dartfrog-signin-header">

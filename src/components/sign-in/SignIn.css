@@ -19,35 +19,84 @@ html, body {
     background: linear-gradient(225deg, #a1c4fd 0%, #c2e9fb 100%);
     overflow: hidden;
 }
+.dartfrog-signin-header {
+    text-align: center;
+}
+
+.dartfrog-signin-header h1 {
+    font-size: 2.5rem; /* Large, readable font size */
+    color: #005f73; /* Adjusted color for the main title for contrast */
+    margin-bottom: 0.5rem; /* Space between the title and the subtitle */
+}
+
+.dartfrog-signin-header p {
+    font-size: 1.2rem; /* Slightly larger than default for readability */
+    color: #2c7da0; /* A shade that complements the title color */
+}
+
 
 .dynamic-circle {
     position: absolute;
-    width: 200%;
-    height: 200%;
+    width: 200vw;
+    height: 200vw;
     border-radius: 50%;
     background: radial-gradient(circle, transparent 40%, #badcf8 41%, transparent 60%);
     z-index: -1; /* Ensure it's behind the sign-in container */
 }
 
-.circle-one {
-    animation: circleWipeOne 18s linear infinite;
+/* Original circles with updated animations for diversity */
+.circle-one { animation: circleWipeOne 70s linear infinite; }
+.circle-two { animation: circleWipeTwo 42s linear infinite 5s; } /* 5s delay */
+.circle-three { animation: circleWipeThree 74s linear infinite 10s; } /* 10s delay */
+.circle-four { animation: circleWipeFour 50s linear infinite 15s; } /* 15s delay */
+.circle-five { animation: circleWipeFive 55s linear infinite 20s; } /* 20s delay */
+.circle-six { animation: circleWipeSix 70s linear infinite 25s; } /* 25s delay */
+.circle-seven { animation: circleWipeSeven 60s linear infinite 30s; } /* 30s delay */
+.circle-eight { animation: circleWipeEight 70s linear infinite 35s; } /* 35s delay */
+
+/* Keyframe animations designed to cover all directions more evenly */
+@keyframes circleWipeOne { /* Left to Right */
+    0%, 100% { transform: translateX(-150%) scale(0.5); }
+    50% { transform: translateX(150%) scale(1.5); }
 }
 
-.circle-two {
-    animation: circleWipeTwo 26s linear infinite;
+@keyframes circleWipeTwo { /* Bottom to Top */
+    0%, 100% { transform: translateY(150%) scale(0.5); }
+    50% { transform: translateY(-150%) scale(1.5); }
 }
 
-@keyframes circleWipeOne {
-    0% { transform: translate(-100%, -50%) scale(1); }
-    50% { transform: translate(100%, 50%) scale(1.5); }
-    100% { transform: translate(-100%, -50%) scale(1); }
+@keyframes circleWipeThree { /* Right to Left */
+    0%, 100% { transform: translateX(150%) scale(0.5); }
+    50% { transform: translateX(-150%) scale(1.5); }
 }
 
-@keyframes circleWipeTwo {
-    0% { transform: translate(100%, -50%) scale(0); }
-    50% { transform: translate(-100%, 50%) scale(1.5); }
-    100% { transform: translate(100%, -50%) scale(0); }
+@keyframes circleWipeFour { /* Top to Bottom */
+    0%, 100% { transform: translateY(-150%) scale(0.5); }
+    50% { transform: translateY(150%) scale(1.5); }
 }
+
+@keyframes circleWipeFive { /* Diagonal Bottom Left to Top Right */
+    0%, 100% { transform: translate(-150%, 150%) scale(0.5); }
+    50% { transform: translate(150%, -150%) scale(1.5); }
+}
+
+@keyframes circleWipeSix { /* Diagonal Top Left to Bottom Right */
+    0%, 100% { transform: translate(-150%, -150%) scale(0.5); }
+    50% { transform: translate(150%, 150%) scale(1.5); }
+}
+
+@keyframes circleWipeSeven { /* Diagonal Bottom Right to Top Left */
+    0%, 100% { transform: translate(150%, 150%) scale(0.5); }
+    50% { transform: translate(-150%, -150%) scale(1.5); }
+}
+
+@keyframes circleWipeEight { /* Diagonal Top Right to Bottom Left */
+    0%, 100% { transform: translate(150%, -150%) scale(0.5); }
+    50% { transform: translate(-150%, 150%) scale(1.5); }
+}
+
+
+
 
 
 .dartfrog-signin-container {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './ResponseSection.css';
+import db from '../../firebaseconfig'; // Adjust the path according to your project structure
+import { collection, getDocs } from 'firebase/firestore';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -10,32 +12,18 @@ function ResponseSection() {
     const [content, setContent] = useState([]);
 
     useEffect(() => {
-        // Simulate fetching data and generate random content
-        const generateContent = () => {
-            const newContent = [];
-            for (let i = 0; i < 10; i++) { // Generate 10 items
-                if (Math.random() > 0.5) {
-                    // Generate a chart
-                    const chartData = {
-                        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                        datasets: [{
-                            label: `Dataset ${i}`,
-                            data: Array.from({ length: 6 }, () => Math.floor(Math.random() * 100)),
-                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                            borderColor: 'rgba(255, 99, 132, 1)',
-                            borderWidth: 1,
-                        }]
-                    };
-                    newContent.push({ type: 'graph', data: chartData });
-                } else {
-                    // Generate text
-                    newContent.push({ type: 'text', data: `Random text content ${i}` });
-                }
-            }
-            setContent(newContent);
+        const fetchContent = async () => {
+            const contentCollectionRef = collection(db, 'graphData'); // Replace 'yourCollectionName' with your actual collection name
+            const contentDocs = await getDocs(contentCollectionRef);
+            const contentData = contentDocs.docs.map(doc => ({
+                type: doc.data().type, // Assuming each document has a 'type' field
+                data: doc.data().data, // Assuming each document has a 'data' field
+            }));
+
+            setContent(contentData);
         };
 
-        generateContent();
+        fetchContent();
     }, []);
 
     const renderContentItem = (item, index) => {

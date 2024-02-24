@@ -1,10 +1,21 @@
 import React from 'react';
 import './SignIn.css';
-
+import app from '../../firebaseconfig'; // Adjust the import path as necessary
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
+const auth = getAuth(app);
 function SignIn({ onSignIn }) {
-    // Placeholder sign-in function
     const handleSignIn = () => {
-        onSignIn();
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                console.log(result);
+                onSignIn(); // Trigger the onSignIn callback after successful sign in
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                console.error(error);
+            });
     };
 
     return (

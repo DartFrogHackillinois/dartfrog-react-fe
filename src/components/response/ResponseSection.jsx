@@ -2,15 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import './ResponseSection.css';
-import db from '../../firebaseconfig'; // Adjust the path according to your project structure
-import { collection, getDocs } from 'firebase/firestore';
+import app from '../../firebaseconfig'; // Adjust the path according to your project structure
+import {collection, getDocs, getFirestore} from 'firebase/firestore';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
+const db = getFirestore(app);
 function ResponseSection() {
     const [content, setContent] = useState([]);
-
     useEffect(() => {
         const fetchContent = async () => {
             const contentCollectionRef = collection(db, 'graphData'); // Replace 'yourCollectionName' with your actual collection name

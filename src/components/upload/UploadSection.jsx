@@ -5,7 +5,7 @@ import app from '../../firebaseconfig';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import ChatInstance from '../chat-instance/ChatInstance';
 const db = getFirestore(app);
-function UploadSection(setGenerating) {
+function UploadSection({setGenerating}) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
     const { getRootProps, getInputProps } = useDropzone({

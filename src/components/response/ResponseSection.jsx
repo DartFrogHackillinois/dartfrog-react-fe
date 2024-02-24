@@ -19,11 +19,12 @@ const chartComponents = {
     pie: Pie
 };
 
-function ResponseSection(generating, setGenerating) {
+function ResponseSection({ generating, setGenerating }) {
     const [content, setContent] = useState([]);
     const userID = localStorage.getItem('user_id');
 
     useEffect(() => {
+        console.log(generating);
         if(generating){
             setGenerating(false);
             if (!userID) return; // Ensure userID exists
@@ -34,7 +35,7 @@ function ResponseSection(generating, setGenerating) {
                 setContent([]); // Clear previous content
 
                 // Handle graphData
-                const graphDataQuery = query(collection(db, 'graphData'), where('userID', '==', userID));
+                const graphDataQuery = query(collection(db, 'graphData'), where('user_id', '==', userID));
                 unsubscribes.push(onSnapshot(graphDataQuery, (snapshot) => {
                     const graphData = snapshot.docs.map(doc => ({
                         type: doc.data().chartType, // 'bar', 'line', etc.
@@ -44,7 +45,7 @@ function ResponseSection(generating, setGenerating) {
                 }));
 
                 // Handle text responses
-                const responseMessagesQuery = query(collection(db, 'responseMessages'), where('userID', '==', userID));
+                const responseMessagesQuery = query(collection(db, 'responseMessages'), where('user_id', '==', userID));
                 unsubscribes.push(onSnapshot(responseMessagesQuery, (snapshot) => {
                     const responseMessages = snapshot.docs.map(doc => ({
                         type: 'text',

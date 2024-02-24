@@ -29,10 +29,19 @@ function UploadSection({setGenerating}) {
                             content: text,
                         });
                         setGenerating(true);
-                        await axios.post('http://172.16.131.44:64869/generate',{
-                            userID: localStorage.getItem('user_id')
-                        });
-
+                        axios.post('http://172.16.131.44:55038/generate', {
+                            userId: localStorage.getItem('user_id') // Ensure the key name matches what the server expects, e.g., userId vs userID
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json', // This is a common header for JSON requests
+                            }
+                        })
+                            .then(response => {
+                                console.log(response.data);
+                            })
+                            .catch(error => {
+                                console.error('There was an error!', error);
+                            });
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);
                     }

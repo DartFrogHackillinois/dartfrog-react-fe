@@ -4,11 +4,12 @@ import { useDropzone } from 'react-dropzone';
 import app from '../../firebaseconfig';
 import { collection, addDoc, getFirestore, where, query, getDocs } from 'firebase/firestore';
 import ChatInstance from '../chat-instance/ChatInstance';
+import axios from 'axios';
 import { files } from '../sign-in/SignIn';
 const db = getFirestore(app);
-
-function UploadSection() {
+function UploadSection({setGenerating}) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
+
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (acceptedFiles) => {
             setUploadedFiles(acceptedFiles);
@@ -28,6 +29,20 @@ function UploadSection() {
                             timestamp: new Date(),
                             content: text,
                         });
+                        setGenerating(true);
+                        axios.post('http://172.16.131.44:55038/generate', {
+                            userId: localStorage.getItem('user_id') // Ensure the key name matches what the server expects, e.g., userId vs userID
+                        }, {
+                            headers: {
+                                'Content-Type': 'application/json', // This is a common header for JSON requests
+                            }
+                        })
+                            .then(response => {
+                                console.log(response.data);
+                            })
+                            .catch(error => {
+                                console.error('There was an error!', error);
+                            });
                         files.push(
                             {
                                 id: String(files.length+1),
@@ -89,5 +104,4 @@ function UploadSection() {
         </div>
     );
 }
-
 export default UploadSection;

@@ -51,7 +51,7 @@ function UploadSection() {
                 </Fragment>)}
             </div>
             <div className="upload-area" {...getRootProps()}>
-                <input {...getInputProps()}/>
+                <input type="file" accept=".csv" {...getInputProps()}/>
                 <p>Drag files here, or click to search your computer.</p>
             </div>
         </div>

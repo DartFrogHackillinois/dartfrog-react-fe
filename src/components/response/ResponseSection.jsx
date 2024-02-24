@@ -20,14 +20,12 @@ const chartComponents = {
     pie: Pie
 };
 
-function ResponseSection({ generating, setGenerating }) {
+function ResponseSection() {
     const [content, setContent] = useState([]);
     const userID = localStorage.getItem('user_id');
-    console.log(generating);
     useEffect(() => {
-        console.log(generating);
-        if(generating){
-            setGenerating(false);
+        if(localStorage.getItem('generating')==='1'){
+            localStorage.setItem('generating','0');
             if (!userID) return; // Ensure userID exists
 
             const unsubscribes = [];
@@ -64,7 +62,7 @@ function ResponseSection({ generating, setGenerating }) {
             };
 
         }
-    }, [generating]); // Depend on userID and refreshData to refetch on changes
+    }, [localStorage.getItem('generating')]); // Depend on userID and refreshData to refetch on changes
 
     const renderContentItem = (item, index) => {
         const ChartComponent = chartComponents[item.type];

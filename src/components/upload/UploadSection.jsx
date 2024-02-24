@@ -29,7 +29,6 @@ function UploadSection({setGenerating}) {
                             timestamp: new Date(),
                             content: text,
                         });
-                        setGenerating(true);
                         axios.post('http://172.16.131.44:55038/generate', {
                             userId: localStorage.getItem('user_id') // Ensure the key name matches what the server expects, e.g., userId vs userID
                         }, {
@@ -46,9 +45,11 @@ function UploadSection({setGenerating}) {
                         files.push(
                             {
                                 id: String(files.length+1),
-                                component: ChatInstance(file.name, text)
+                                name: file.name,
+                                text: text
                             }
                         )
+                        localStorage.setItem('generating','1');
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);
                     }
@@ -80,10 +81,10 @@ function UploadSection({setGenerating}) {
 
     const [clickedComponent, setClickedComponent] = useState(null);
 
-    const handleClick = (id) => {
-        setClickedComponent(id);
-        localStorage.setItem("component_id", id)
-        console.log(`Clicked component with id: ${id}`)
+    const handleClick = (chat) => {
+        setClickedComponent(chat.id);
+        localStorage.setItem("component_id", chat.id)
+        console.log(`Clicked component with id: ${chat.id}`)
         console.log(localStorage.getItem("component_id"))
     }
 

@@ -6,7 +6,6 @@ import ResponseSection from './components/response/ResponseSection';
 
 function App() {
     const [isSignedIn, setIsSignedIn] = useState(false);
-    const [generating, setGenerating] = useState(false);
     const handleSignIn = () => setIsSignedIn(true);
 
     return (
@@ -15,8 +14,8 @@ function App() {
                 <SignIn onSignIn={handleSignIn}/>
             ) : (
                 <div className="app-wrapper">
-                    <UploadSection setGenerating={setGenerating}/>
-                    <ResponseSection generating = {generating} setGenerating={setGenerating}/>
+                    <UploadSection/>
+                    <ResponseSection/>
                 </div>
             )}
         </>

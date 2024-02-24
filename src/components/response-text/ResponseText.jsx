@@ -1,62 +1,46 @@
-import './ResponseText.css'
+import './ResponseText.css';
 import { where, query, getDocs, collection, getFirestore } from 'firebase/firestore';
 import app from '../../firebaseconfig'; // Adjust the import path as necessary
-import ResponseInstance from '../response-instance/ResponseInstance';
-import {Fragment} from 'react'
+import { Fragment, useState, useEffect } from 'react';
 const db = getFirestore(app);
 
-
 function ResponseText() {
+    const [userResponses, setUserResponses] = useState([]);
+    useEffect(() => {
+        // This useEffect will run once when the component mounts
+        const getUserResponses = async () => {
+            const responseMessagesQuery = query(collection(db, 'responseMessages'), where('user_id', '==', "Da6AzPT7rPWIlkrUL1zCacYmEVl2"));
+            const querySnapshot = await getDocs(responseMessagesQuery);
+            const responses = [];
+            querySnapshot.forEach((doc) => {
+                responses.push({
+                    id: String(responses.length),
+                    response: doc.data().response, // Assuming 'response' is the field you want
+                });
+            });
+            setUserResponses(responses); // Update state with the fetched data
+        };
 
-    var user_responses = []
+        getUserResponses(); // Call the function to fetch data
+    }, []); // Empty dependency array means this effect runs once on mount
 
-    const getUserResponses = async () => {
-
-        const responseMessagesQuery = query(collection(db, 'responseMessages'), where('user_id', '==', "Da6AzPT7rPWIlkrUL1zCacYmEVl2"));
-        const querySnapshot = await getDocs(responseMessagesQuery);
-        querySnapshot.forEach((doc) => {
-            user_responses.push(
-                {
-                    id: String(user_responses.length),
-                    component: ResponseInstance(doc.get("response")),
-                }
-            )
-        });
-    }
-
-    const printLength = () => {
-        console.log("Printing all contents of the array: ");
-        console.log("")
-        for (var i = 0; i < user_responses.length; i++) {
-            console.log(user_responses.at(i).component.Text)
-        }
-        console.log("")
-        console.log("Done printing all contents.")
-    }
+    // Debugging: Log the responses to the console
+    useEffect(() => {
+        console.log("User responses updated:", userResponses);
+    }, [userResponses]); // This effect runs whenever userResponses changes
 
     const resetArray = () => {
-        user_responses = []
-    }
-    let string_response = ""+user_responses.at(0);
+        setUserResponses([]); // Clear the responses
+    };
 
     return (
         <div className='response-text-container'>
-            <button onClick={getUserResponses}>Add responses to array</button>
-            <button onClick={printLength}>Print Contents of Responses</button>
             <button onClick={resetArray}>Reset array</button>
-            {/* {String(user_responses.at(0))} */}
-            {user_responses.map((chat) =>
-                <Fragment key={chat.id} >
-                    <div>{chat.component}</div>
-                </Fragment>)}
-            {/* {user_responses[0].component} */}
-            <div>
-                
-                {/* <ResponseInstance Text={string_response} /> */}
-                {/* <ResponseInstance Text={user_responses[localStorage.getItem("component_id")-1]} /> */}
-                {/* <ResponseInstance text={user_responses.at(0).} /> */}
-                {/* {string_response} */}
-            </div>
+            {userResponses.map((chat) => (
+                <Fragment key={chat.id}>
+                    <div>{chat.response}</div>
+                </Fragment>
+            ))}
         </div>
     );
 }

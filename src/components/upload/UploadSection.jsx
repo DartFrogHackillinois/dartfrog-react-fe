@@ -28,6 +28,12 @@ function UploadSection() {
                             timestamp: new Date(),
                             content: text,
                         });
+                        files.push(
+                            {
+                                id: String(files.length+1),
+                                component: ChatInstance(file.name, text)
+                            }
+                        )
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);
                     }
@@ -37,7 +43,7 @@ function UploadSection() {
         },
     });
 
-    const chats = files;
+    var chats = files;
 
     // const chats =
     //     [{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}

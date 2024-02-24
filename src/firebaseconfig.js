@@ -1,9 +1,10 @@
-// firebaseConfig.js
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-    apiKey: process.env.APIKEY,
+    // Your Firebase configuration
+    apiKey: process.env.APIKEY, // Make sure the environment variable is correctly set
     authDomain: "dartfrog-ecb02.firebaseapp.com",
     projectId: "dartfrog-ecb02",
     storageBucket: "dartfrog-ecb02.appspot.com",
@@ -13,6 +14,5 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
+const db = getFirestore(app)
 export default db;

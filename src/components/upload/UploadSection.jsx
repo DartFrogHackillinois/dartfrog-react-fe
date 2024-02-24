@@ -19,7 +19,6 @@ function UploadSection() {
         },
     });
 
-
     return (
         <div className="upload-section">
             <div className="sidebar">Past Chats</div>

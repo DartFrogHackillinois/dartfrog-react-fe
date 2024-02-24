@@ -6,6 +6,7 @@ import { collection, addDoc, getFirestore, where, query, getDocs } from 'firebas
 import ChatInstance from '../chat-instance/ChatInstance';
 import axios from 'axios';
 import { files } from '../sign-in/SignIn';
+import {v4} from 'uuid';
 const db = getFirestore(app);
 function UploadSection({setGenerating}) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -23,9 +24,11 @@ function UploadSection({setGenerating}) {
                 reader.onload = async (e) => {
                     const text = e.target.result;
                     try {
+                        let newFileID = v4();
                         await addDoc(collection(db, 'csvUploads'), {
                             name: file.name,
                             userID: localStorage.getItem('user_id'),
+                            fileID: newFileID,
                             timestamp: new Date(),
                             content: text,
                         });
@@ -44,7 +47,7 @@ function UploadSection({setGenerating}) {
                             });
                         files.push(
                             {
-                                id: String(files.length+1),
+                                fileId: newFileID,
                                 name: file.name,
                                 text: text
                             }

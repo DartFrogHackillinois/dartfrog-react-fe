@@ -3,7 +3,8 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, LineElement, 
 import { Bar, Line, Scatter, PolarArea, Doughnut, Bubble, Radar, Pie } from 'react-chartjs-2';
 import './ResponseSection.css';
 import app from '../../firebaseconfig'; // Adjust the path according to your project structure
-import { collection, query, where, onSnapshot, getFirestore } from 'firebase/firestore';
+import { collection, query, where, getDocs, onSnapshot, getFirestore } from 'firebase/firestore';
+import ResponseText from '../response-text/ResponseText';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, LineElement, PointElement, Title, Tooltip, Legend);
@@ -77,7 +78,8 @@ function ResponseSection({ generating, setGenerating }) {
 
     return (
         <div className="response-section">
-            {content.map(renderContentItem)}
+            {/* {content.map(renderContentItem)} */}
+            <ResponseText />
         </div>
     );
 }

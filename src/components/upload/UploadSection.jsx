@@ -36,10 +36,23 @@ function UploadSection() {
         },
     });
 
-    const chats = [{id: "Component1", component: ChatInstance("New Chat 1", "Description 1")}, {id: "Component2", component: ChatInstance("New Chat 2", "Description 2")}, 
-    {id: "Component3", component: ChatInstance("New Chat 3", "Description 3")}, {id: "Component4", component: ChatInstance("New Chat 4", "Description 4")},
-    {id: "Component5", component: ChatInstance("New Chat 5", "Description 5")}, {id: "Component6", component: ChatInstance("New Chat 6", "Description 6")},
-    {id: "Component7", component: ChatInstance("New Chat 7", "Description 7")}, {id: "Component8", component: ChatInstance("New Chat 8", "Description 8")}]
+    const chats =
+        [{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+        ,{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
+            , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}]
 
     return (
         <div className="upload-section">

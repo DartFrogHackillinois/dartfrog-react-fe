@@ -1,11 +1,11 @@
 import React from 'react'
 import './ChatInstance.css'
 
-function ChatInstance(Title, Description) {
+function ChatInstance(title, description) {
     return (
         <div className='chat-instance-container'>
-            <h2>{Title}</h2>
-            {/* <p>{Description}</p> */}
+            <h2>{title}</h2>
+             <p>{description}</p>
         </div>
     );
 }

@@ -6,7 +6,8 @@
 }
 
 .sidebar {
-    flex: 1;
+    
+    flex: 2;
     background-color: #2c3e50;
     color: #ecf0f1;
     padding: 20px;
@@ -16,7 +17,7 @@
 }
 
 .upload-area {
-    flex: 2;
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -8,7 +8,6 @@ const db = getFirestore(app);
 
 function UploadSection() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
-
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (acceptedFiles) => {
             setUploadedFiles(acceptedFiles);
@@ -22,10 +21,11 @@ function UploadSection() {
                 reader.onload = async (e) => {
                     const text = e.target.result;
                     try {
-                        await addDoc(collection(db, "csvUploads"), {
-                            content: text, // Assuming you want to store the CSV content in a field named 'content'
+                        await addDoc(collection(db, 'csvUploads'), {
                             name: file.name,
-                            timestamp: new Date(), // Or use serverTimestamp() if you imported it
+                            userID: localStorage.getItem('user_id'),
+                            timestamp: new Date(),
+                            content: text,
                         });
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);

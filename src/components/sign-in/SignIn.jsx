@@ -13,7 +13,6 @@ function SignIn({ onSignIn }) {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 
                 setValue(result.user.uid);
-                console.log(result.user.uid);
                 localStorage.setItem("user_id", result.user.uid)
                 onSignIn(); // Trigger the onSignIn callback after successful sign in
             })

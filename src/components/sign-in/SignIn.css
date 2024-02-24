@@ -2,7 +2,7 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
     background: #e0e5ec;
     overflow: hidden;
 }
@@ -45,14 +45,14 @@ html, body {
 }
 
 /* Original circles with updated animations for diversity */
-.circle-one { animation: circleWipeOne 70s linear infinite; }
+.circle-one { animation: circleWipeOne 70s linear infinite 40s; }
 .circle-two { animation: circleWipeTwo 42s linear infinite 5s; } /* 5s delay */
-.circle-three { animation: circleWipeThree 74s linear infinite 10s; } /* 10s delay */
+.circle-three { animation: circleWipeThree 74s linear infinite 28s; } /* 10s delay */
 .circle-four { animation: circleWipeFour 50s linear infinite 15s; } /* 15s delay */
-.circle-five { animation: circleWipeFive 55s linear infinite 20s; } /* 20s delay */
+.circle-five { animation: circleWipeFive 55s linear infinite 45s; } /* 20s delay */
 .circle-six { animation: circleWipeSix 70s linear infinite 25s; } /* 25s delay */
-.circle-seven { animation: circleWipeSeven 60s linear infinite 30s; } /* 30s delay */
-.circle-eight { animation: circleWipeEight 70s linear infinite 35s; } /* 35s delay */
+.circle-seven { animation: circleWipeSeven 60s linear infinite 20s; } /* 30s delay */
+.circle-eight { animation: circleWipeEight 70s linear infinite 52s; } /* 35s delay */
 
 /* Keyframe animations designed to cover all directions more evenly */
 @keyframes circleWipeOne { /* Left to Right */

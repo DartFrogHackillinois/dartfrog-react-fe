@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './UploadSection.css';
 import { useDropzone } from 'react-dropzone';
-import db from '../../firebaseconfig';
-import { collection, addDoc } from 'firebase/firestore';
-
+import app from '../../firebaseconfig';
+import { collection, addDoc, getFirestore } from 'firebase/firestore';
+const db = getFirestore(app);
 function UploadSection() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
 

@@ -63,14 +63,23 @@ function UploadSection() {
     //         , {id: "Component15", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
     //         , {id: "Component16", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}]
 
+    const [clickedComponent, setClickedComponent] = useState(null);
+
+    const handleClick = (id) => {
+        setClickedComponent(id);
+        localStorage.setItem("component_id", id)
+        console.log(`Clicked component with id: ${id}`)
+        console.log(localStorage.getItem("component_id"))
+    }
+
     return (
         <div className="upload-section">
 
             <div className="sidebar">
             Past Chats
             {chats.map((chat) =>
-                <Fragment key={chat.id}>
-                    {chat.component}
+                <Fragment key={chat.id} >
+                    <div onClick={() => handleClick(chat.id)}>{chat.component}</div>
                 </Fragment>)}
             </div>
             <div className="upload-area" {...getRootProps()}>

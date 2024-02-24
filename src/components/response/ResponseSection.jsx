@@ -4,6 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import './ResponseSection.css';
 import app from '../../firebaseconfig'; // Adjust the path according to your project structure
 import {collection, getDocs, getFirestore} from 'firebase/firestore';
+import ResponseText from '../response-text/ResponseText';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -38,7 +39,8 @@ function ResponseSection() {
 
     return (
         <div className="response-section">
-            {content.map(renderContentItem)}
+            {/* {content.map(renderContentItem)} */}
+            <ResponseText />
         </div>
     );
 }

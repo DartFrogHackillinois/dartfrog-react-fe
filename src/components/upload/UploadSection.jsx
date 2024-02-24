@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import './UploadSection.css';
 import { useDropzone } from 'react-dropzone';
 import db from '../../firebaseconfig';
 import { collection, addDoc } from 'firebase/firestore';
+import ChatInstance from '../chat-instance/ChatInstance';
 
 function UploadSection() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -34,9 +35,21 @@ function UploadSection() {
         },
     });
 
+    const chats = [{id: "Component1", component: ChatInstance("New Chat 1", "Description 1")}, {id: "Component2", component: ChatInstance("New Chat 2", "Description 2")}, 
+    {id: "Component3", component: ChatInstance("New Chat 3", "Description 3")}, {id: "Component4", component: ChatInstance("New Chat 4", "Description 4")},
+    {id: "Component5", component: ChatInstance("New Chat 5", "Description 5")}, {id: "Component6", component: ChatInstance("New Chat 6", "Description 6")},
+    {id: "Component7", component: ChatInstance("New Chat 7", "Description 7")}, {id: "Component8", component: ChatInstance("New Chat 8", "Description 8")}]
+
     return (
         <div className="upload-section">
-            <div className="sidebar">Past Chats</div>
+
+            <div className="sidebar">
+            Past Chats
+            {chats.map((chat) =>
+                <Fragment key={chat.id}>
+                    {chat.component}
+                </Fragment>)}
+            </div>
             <div className="upload-area" {...getRootProps()}>
                 <input {...getInputProps()}/>
                 <p>Drag files here, or click to search your computer.</p>

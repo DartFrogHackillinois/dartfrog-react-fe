@@ -22,7 +22,7 @@ const chartComponents = {
 function ResponseSection({ generating, setGenerating }) {
     const [content, setContent] = useState([]);
     const userID = localStorage.getItem('user_id');
-
+    console.log(generating);
     useEffect(() => {
         console.log(generating);
         if(generating){
@@ -49,7 +49,7 @@ function ResponseSection({ generating, setGenerating }) {
                 unsubscribes.push(onSnapshot(responseMessagesQuery, (snapshot) => {
                     const responseMessages = snapshot.docs.map(doc => ({
                         type: 'text',
-                        data: doc.data().text,
+                        data: doc.get('generated_response'),
                     }));
                     setContent(prevContent => [...prevContent, ...responseMessages]);
                 }));

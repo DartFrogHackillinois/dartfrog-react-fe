@@ -4,6 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import app from '../../firebaseconfig';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import ChatInstance from '../chat-instance/ChatInstance';
+import axios from 'axios';
 const db = getFirestore(app);
 function UploadSection({setGenerating}) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -28,6 +29,10 @@ function UploadSection({setGenerating}) {
                             content: text,
                         });
                         setGenerating(true);
+                        await axios.post('http://172.16.131.44:64869/generate',{
+                            userID: localStorage.getItem('user_id')
+                        });
+
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);
                     }

@@ -3,8 +3,9 @@ import './UploadSection.css';
 import { useDropzone } from 'react-dropzone';
 import app from '../../firebaseconfig';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
-const db = getFirestore(app);
 import ChatInstance from '../chat-instance/ChatInstance';
+const db = getFirestore(app);
+
 function UploadSection() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
 

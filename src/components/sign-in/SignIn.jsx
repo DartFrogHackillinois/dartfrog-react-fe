@@ -30,7 +30,7 @@ function SignIn({ onSignIn }) {
                     <p>Start your journey with us</p>
                 </div>
                 <div className="dartfrog-signin-content">
-                    <button onClick={onSignIn} className="google-signin">Sign in with Google</button>
+                    <button onClick={handleSignIn} className="google-signin">Sign in with Google</button>
                 </div>
                 <div className="dartfrog-signin-footer">
                     <p>By signing in, you agree to our Terms of Service and Privacy Policy.</p>

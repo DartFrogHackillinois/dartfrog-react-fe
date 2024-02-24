@@ -1,0 +1,17 @@
+.response-section {
+    flex: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+    margin-left: 20px;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+/* Styling for individual response items, if needed */
+.response-item {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

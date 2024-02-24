@@ -1,0 +1,36 @@
+.sign-in-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.sign-in-box {
+    min-width: 300px;
+    padding: 40px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sign-in-box button {
+    background-color: #4285f4;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.sign-in-box button:hover {
+    background-color: #357ae8;
+}

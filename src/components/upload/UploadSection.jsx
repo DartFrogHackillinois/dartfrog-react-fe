@@ -5,9 +5,9 @@ import app from '../../firebaseconfig';
 import { collection, addDoc, getFirestore } from 'firebase/firestore';
 import ChatInstance from '../chat-instance/ChatInstance';
 const db = getFirestore(app);
-
-function UploadSection() {
+function UploadSection(setGenerating) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
+
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (acceptedFiles) => {
             setUploadedFiles(acceptedFiles);
@@ -27,6 +27,7 @@ function UploadSection() {
                             timestamp: new Date(),
                             content: text,
                         });
+                        setGenerating(true);
                     } catch (error) {
                         console.error("Error uploading CSV content to Firestore:", error);
                     }
@@ -71,5 +72,4 @@ function UploadSection() {
         </div>
     );
 }
-
 export default UploadSection;

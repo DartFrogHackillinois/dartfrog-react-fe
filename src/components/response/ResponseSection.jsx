@@ -26,16 +26,16 @@ function ResponseSection() {
         fetchContent();
     }, []);
 
-    const renderContentItem = (item, index) => {
-        switch (item.type) {
-            case 'graph':
-                return <div key={index} className="response-item"><Bar data={item.data} /></div>;
-            case 'text':
-                return <div key={index} className="response-item"><p>{item.data}</p></div>;
-            default:
-                return null;
-        }
-    };
+    // const renderContentItem = (item, index) => {
+    //     switch (item.type) {
+    //         case 'graph':
+    //             return <div key={index} className="response-item"><Bar data={item.data} /></div>;
+    //         case 'text':
+    //             return <div key={index} className="response-item"><p>{item.data}</p></div>;
+    //         default:
+    //             return null;
+    //     }
+    // };
 
     return (
         <div className="response-section">

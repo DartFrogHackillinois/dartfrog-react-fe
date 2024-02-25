@@ -11,7 +11,7 @@ function ResponseText({tester}) {
     useEffect(() => {
         // This useEffect will run once when the component mounts
         const getUserResponses = async () => {
-            const responseMessagesQuery = query(collection(db, 'responseMessages'), where('user_id', '==', "Da6AzPT7rPWIlkrUL1zCacYmEVl2"), where('fileID', '==', localStorage.getItem('component_id')));
+            const responseMessagesQuery = query(collection(db, 'responseMessages'), where('user_id', '==', localStorage.getItem('user_id')), where('file_id', '==', localStorage.getItem('component_id')));
             const querySnapshot = await getDocs(responseMessagesQuery);
             querySnapshot.forEach((doc) => {
                 responses.push({

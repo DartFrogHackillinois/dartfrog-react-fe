@@ -29,7 +29,7 @@ function UploadSection({setGenerating}) {
                         await addDoc(collection(db, 'csvUploads'), {
                             name: file.name,
                             userID: localStorage.getItem('user_id'),
-                            fileID: newFileID,
+                            file_id: newFileID,
                             timestamp: new Date(),
                             content: text,
                         });
@@ -72,6 +72,7 @@ function UploadSection({setGenerating}) {
     const handleClick = (chat) => {
         setClickedComponent(chat.id);
         localStorage.setItem("component_id", chat.id)
+        console.log(localStorage.getItem("component_id"));
     }
 
     return (

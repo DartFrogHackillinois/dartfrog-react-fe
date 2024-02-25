@@ -38,7 +38,7 @@ function SignIn({ onSignIn }) {
                 files.push(
                     {
                         // Note: documents get stored based on a global fileID that matches up with that of their responses
-                        id: doc.get("fileID"),
+                        id: doc.get("file_id"),
                         component: ChatInstance(doc.get("name"), doc.get("content"))
                     }
                 )

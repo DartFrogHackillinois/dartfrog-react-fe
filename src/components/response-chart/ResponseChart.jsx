@@ -12,9 +12,11 @@ import {
     Title,
     Tooltip,
     Legend,
-    PointElement
+    ArcElement,
+    PointElement,
+    RadialLinearScale
 } from 'chart.js';
-
+var message = "Loading chart..."
 const db = getFirestore(app);
 
 // Register the chart components you're using
@@ -25,7 +27,9 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    ArcElement,
+    RadialLinearScale
 );
 
 // Mapping from chart type string to the corresponding React component
@@ -59,7 +63,7 @@ function ResponseChart() {
                 if (doc.exists()) {
                     const data = doc.data();
                     console.log(data.graph_response);
-                    setChartType(data.graph_type.toLowerCase()); // Ensure lowercase to match keys in chartComponents
+                    setChartType(data.graph_type); // Ensure lowercase to match keys in chartComponents
                     setChartData(data.graph_response); // Assuming this is the correct format for react-chartjs-2
                 }else {
                     console.log("Document does not exist");
@@ -71,26 +75,47 @@ function ResponseChart() {
         };
 
         getUserResponses();
-    }, []); // Dependency array is empty, so this effect runs once on mount
+    }); // Dependency array is empty, so this effect runs once on mount
+    function getRandomMutedColor() {
+        const hue = Math.floor(0.44 * 360); // Random hue from 0 to 359
+        const saturation = Math.floor(0.3 * 30) + 40; // Saturation between 40% to 70% for muted effect
+        const lightness = Math.floor(0.3 * 20) + 40; // Lightness between 40% to 60% to avoid too bright or too dark colors
+        return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+    }
+    function makeDarkerHSL(hslColor, darkenAmount = 20) {
+        // Assuming the input format is "hsl(120, 50%, 50%)"
+        // Extract the HSL values
+        const [hue, saturation, lightness] = hslColor.match(/\d+/g).map(Number);
 
+        // Calculate the new lightness, ensuring it doesn't go below 0
+        let newLightness = lightness - darkenAmount;
+        if (newLightness < 0) newLightness = 0;
+
+        // Return the new HSL color
+        return `hsl(${hue}, ${saturation}%, ${newLightness}%)`;
+    }
+    const color1 = getRandomMutedColor();
+    const color2 = makeDarkerHSL(color1);
     const SpecificChart = chartComponents[chartType];
     console.log(chartData);
     const chartOptions = {
+        backgroundColor: color1,
+        borderColor: color2,
         maintainAspectRatio: true, // Set to false for a responsive height
         aspectRatio: 0.15, // Adjust this value as needed to control the chart's height; higher values make the chart shorter
         animation: {
-            duration: 1000, // Smooth transition for animations
+            duration: 600, // Smooth transition for animations
             easing: 'easeInOutQuad', // Modern easing function for animations
         },
         scales: {
             y: {
                 beginAtZero: false, // Logarithmic scale does not support beginning at zero
                 grid: {
-                    color: "rgba(134,134,134,0.1)", // Softer grid lines for a less bright look
-                    borderColor: "rgba(133,133,133,0.3)", // Softer border for a fresh look
+                    color: "rgba(58,58,58,0.1)", // Softer grid lines for a less bright look
+                    borderColor: "rgba(68,68,68,0.3)", // Softer border for a fresh look
                 },
                 ticks: {
-                    color: "#505050", // Even lighter grey tick labels for softer contrast
+                    color: "#414141", // Even lighter grey tick labels for softer contrast
                     callback: function(value, index, values) { // Custom callback to format ticks
                         return Number(value.toString()); // Return the value as is
                     }
@@ -162,7 +187,7 @@ function ResponseChart() {
             {SpecificChart && chartData ? (
                 <SpecificChart data={chartData.data} options={chartOptions} />
             ) : (
-                <p>Loading chart...</p>
+                <p>{message}</p>
             )}
         </div>
     );

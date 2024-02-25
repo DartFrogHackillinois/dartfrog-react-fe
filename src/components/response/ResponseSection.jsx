@@ -45,8 +45,8 @@ function ResponseSection() {
     return (
         <div className="response-section">
             {/* {content.map(renderContentItem)} */}
-            <ResponseText tester={localStorage.getItem('component_id')}/>
             <ResponseChart tester={localStorage.getItem('component_id')}/>
+            <ResponseText tester={localStorage.getItem('component_id')}/>
             <ResponseInstance Text={"hey"} />
         </div>
     );

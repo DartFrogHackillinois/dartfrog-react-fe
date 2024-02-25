@@ -7,6 +7,14 @@ html, body {
     overflow: hidden;
 }
 
+.frog {
+    margin-top: 0px;
+    margin-bottom: -20px;
+    margin-left: -15px;
+    width: 70px;
+    height:70px;
+}
+
 .dartfrog-signin-page {
     display: flex;
     align-items: center;

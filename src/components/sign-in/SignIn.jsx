@@ -4,6 +4,7 @@ import app from '../../firebaseconfig'; // Adjust the import path as necessary
 import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { where, query, getDocs, collection, getFirestore } from 'firebase/firestore'
 import ChatInstance from '../chat-instance/ChatInstance';
+import cleanfrog from "../../images/cleanfrog.png";
 
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -58,7 +59,9 @@ function SignIn({ onSignIn }) {
     }
 
     return (
+        
         <div className="dartfrog-signin-page">
+            
             <div className="dynamic-circle circle-one"></div>
             <div className="dynamic-circle circle-two"></div>
             <div className="dynamic-circle circle-three"></div>
@@ -67,11 +70,10 @@ function SignIn({ onSignIn }) {
             <div className="dynamic-circle circle-six"></div>
             <div className="dynamic-circle circle-seven"></div>
             <div className="dynamic-circle circle-eight"></div>
-
             <div className="dartfrog-signin-container">
                 <div className="dartfrog-signin-header">
-                    <h1>Welcome to DartFrog</h1>
-                    <p>Start your journey with us</p>
+                    <h1>Welcome to DartFrog <img className='frog' src={cleanfrog} /></h1>
+                    <p>Start your journey with us  </p>
                 </div>
                 <div className="dartfrog-signin-content">
                     <button onClick={signInOps} className="google-signin">Sign in with Google</button>

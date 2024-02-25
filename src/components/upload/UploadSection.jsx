@@ -79,7 +79,7 @@ function UploadSection({setGenerating}) {
         <div className="upload-section">
 
             <div className="sidebar">
-            Past Chats
+            <p className='past-files'>Past Files</p>
             {chats.map((chat) =>
                 <Fragment key={chat.id} >
                     <div onClick={() => handleClick(chat)}>{chat.component}</div>
@@ -87,7 +87,7 @@ function UploadSection({setGenerating}) {
             </div>
             <div className="upload-area" {...getRootProps()}>
                 <input type="file" accept=".csv" {...getInputProps()}/>
-                <p>Drag files here, or click to search your computer.</p>
+                <p>Click to add CSV file and analyze it</p>
             </div>
         </div>
     );

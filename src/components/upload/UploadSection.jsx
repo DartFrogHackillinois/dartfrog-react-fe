@@ -47,9 +47,10 @@ function UploadSection({setGenerating}) {
                             });
                         files.push(
                             {
-                                fileId: newFileID,
-                                name: file.name,
-                                text: text
+                                id: newFileID,
+                                component: ChatInstance(file.name, text)
+                                // name: file.name,
+                                // text: text
                             }
                         )
                         localStorage.setItem('generating','1');
@@ -63,24 +64,6 @@ function UploadSection({setGenerating}) {
     });
 
     var chats = files;
-
-    // const chats =
-    //     [{id: "Component1", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component2", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component3", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component4", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component5", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component6", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component7", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component8", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //     ,{id: "Component9", component: ChatInstance("New Chat 1", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component10", component: ChatInstance("New Chat 2", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component11", component: ChatInstance("New Chat 3", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component12", component: ChatInstance("New Chat 4", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component13", component: ChatInstance("New Chat 5", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component14", component: ChatInstance("New Chat 6", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component15", component: ChatInstance("New Chat 7", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}
-    //         , {id: "Component16", component: ChatInstance("Long Chat overflow testing here right now", "This is an example description for this chat. Here we see that an ellipsis is automatically formed as this sentence is quite too long.")}]
 
     const [clickedComponent, setClickedComponent] = useState(null);
 
@@ -98,7 +81,7 @@ function UploadSection({setGenerating}) {
             Past Chats
             {chats.map((chat) =>
                 <Fragment key={chat.id} >
-                    <div onClick={() => handleClick(chat.id)}>{chat.component}</div>
+                    <div onClick={() => handleClick(chat)}>{chat.component}</div>
                 </Fragment>)}
             </div>
             <div className="upload-area" {...getRootProps()}>

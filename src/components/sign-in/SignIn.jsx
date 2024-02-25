@@ -36,7 +36,7 @@ function SignIn({ onSignIn }) {
                 // doc.data() is never undefined for query doc snapshots
                 files.push(
                     {
-                        id: String(index),
+                        id: doc.get("fileID"),
                         component: ChatInstance(doc.get("name"), doc.get("content"))
                     }
                 )

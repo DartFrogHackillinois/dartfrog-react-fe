@@ -40,7 +40,6 @@ function ResponseText({tester}) {
 
     return (
         <div onClick={doNothing} className='response-text-container'>
-            <button onClick={resetArray}>Reset array</button>
             {userResponses.map((chat) => (
                 <Fragment key={chat.id}>
                     <div>{chat.response}</div>

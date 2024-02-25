@@ -6,12 +6,15 @@ import app from '../../firebaseconfig'; // Adjust the path according to your pro
 import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import ResponseText from '../response-text/ResponseText';
 import ResponseChart from "../response-chart/ResponseChart";
+import ResponseInstance from '../response-instance/ResponseInstance';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 const db = getFirestore(app);
 function ResponseSection() {
     const [content, setContent] = useState([]);
+
+    // Updates when component is re-run
     useEffect(() => {
         const fetchContent = async () => {
             const contentCollectionRef = collection(db, 'graphData'); // Replace 'yourCollectionName' with your actual collection name
@@ -20,6 +23,7 @@ function ResponseSection() {
                 type: doc.data().type, // Assuming each document has a 'type' field
                 data: doc.data().data, // Assuming each document has a 'data' field
             }));
+
 
             setContent(contentData);
         };
@@ -43,6 +47,7 @@ function ResponseSection() {
             {/* {content.map(renderContentItem)} */}
             <ResponseText tester={localStorage.getItem('component_id')}/>
             <ResponseChart tester={localStorage.getItem('component_id')}/>
+            <ResponseInstance Text={"hey"} />
         </div>
     );
 }

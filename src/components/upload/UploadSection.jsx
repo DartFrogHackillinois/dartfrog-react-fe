@@ -11,6 +11,7 @@ const db = getFirestore(app);
 function UploadSection({setGenerating}) {
     const [uploadedFiles, setUploadedFiles] = useState([]);
 
+    // Props for handling a file upload
     const { getRootProps, getInputProps } = useDropzone({
         onDrop: async (acceptedFiles) => {
             setUploadedFiles(acceptedFiles);
@@ -67,11 +68,10 @@ function UploadSection({setGenerating}) {
 
     const [clickedComponent, setClickedComponent] = useState(null);
 
+    // Handles clicks between components. More specifically, updates global storage variable component_id value with most recently clicked component
     const handleClick = (chat) => {
         setClickedComponent(chat.id);
         localStorage.setItem("component_id", chat.id)
-        console.log(`Clicked component with id: ${chat.id}`)
-        console.log(localStorage.getItem("component_id"))
     }
 
     return (

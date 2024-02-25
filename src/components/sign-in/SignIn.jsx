@@ -13,9 +13,9 @@ function SignIn({ onSignIn }) {
     const handleSignIn = () => {
         const provider = new GoogleAuthProvider();
         
+        // Brings up Popup window to log in with
         signInWithPopup(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
                 
                 setValue(result.user.uid);
                 localStorage.setItem("user_id", result.user.uid)
@@ -27,22 +27,20 @@ function SignIn({ onSignIn }) {
             });
     };
 
+    // Gets all files belonging to the user ID currently logged in
     const getUserFiles = async () => {
         try {
-            var index = 0;
             const q = query(collection(db, "csvUploads"), where("userID", "==", localStorage.getItem('user_id')));
             const querySnapshot = await getDocs(q);
             querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
+                // Pushes the current files to our global array of files
                 files.push(
                     {
+                        // Note: documents get stored based on a global fileID that matches up with that of their responses
                         id: doc.get("fileID"),
                         component: ChatInstance(doc.get("name"), doc.get("content"))
                     }
                 )
-                index += 1;
-                console.log(doc.data(), "uploaded by", localStorage.getItem('user_id'))
-                // console.log(doc.name, " => ", doc.data());
             });
         } catch (error) {
             console.log("Error fetching data", error);
@@ -53,6 +51,7 @@ function SignIn({ onSignIn }) {
         setValue(localStorage.getItem("user_id"));
     })
 
+    // Compound function combining multiple sign in operations. Handles the sign in AND gathers the user's files
     const signInOps = () => {
         handleSignIn();
         getUserFiles();

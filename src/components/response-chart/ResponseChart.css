@@ -1,0 +1,29 @@
+/* ResponseChart.css */
+
+/* General styling for the container */
+.response-chart-container {
+    margin: 20px auto; /* Center the chart container */
+    padding: 20px;
+    border: 1px solid #e1e1e1; /* Light grey border for some distinction */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    background-color: #fff; /* White background to make the chart stand out */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    height: 100%; /* Make the container take most of the width */
+    max-width: 1200px; /* But limit the maximum width */
+    text-align: center; /* Center the loading text or any other text inside */
+}
+
+/* Specific styling to ensure charts are large and easily readable */
+.canvas-container {
+    width: auto; /* Ensure the chart fills the container */
+    height: 100%; /* Maintain aspect ratio */
+    max-height: 600px; /* Limit the height to ensure it's not too tall on large screens */
+}
+
+/* If you're directly styling the canvas (where the chart renders), you might need to target it specifically */
+/* This depends on how react-chartjs-2 renders the chart. If it's within a canvas element directly, you might not need this */
+canvas {
+    width: 100% !important; /* Force the canvas to expand fully */
+    height: auto !important; /* Adjust height automatically */
+    max-height: 600px !important; /* But prevent it from becoming too tall */
+}

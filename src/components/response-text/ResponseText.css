@@ -1,0 +1,40 @@
+/* ResponseText.css */
+
+.response-text-container {
+    margin: 20px;
+    padding: 4vh 4vw 4vh 4vw;
+    border: 1px solid #e1e1e1; /* Light grey border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-width: 600px; /* Set a max-width for the container */
+}
+
+/* Style for the markdown rendered text */
+/* Adjust as necessary, depending on how you want the markdown content to look */
+.react-markdown {
+    font-family: 'Arial', sans-serif; /* Use a readable font */
+    color: #333; /* Dark grey color for better readability */
+    line-height: 1.6; /* Space out lines a bit for readability */
+    margin-bottom: 20px; /* Space between paragraphs/markdown elements */
+}
+
+/* If you want specific styles for headings, links, etc., within the markdown content, you can add more specific rules. For example: */
+.react-markdown h1,
+.react-markdown h2,
+.react-markdown h3 {
+    color: #00457c; /* Example color for headings */
+}
+
+.react-markdown p {
+    margin-bottom: 1em;
+}
+
+.react-markdown a {
+    color: #0066cc; /* Example color for links */
+    text-decoration: none; /* Remove underline from links */
+}
+
+.react-markdown a:hover {
+    text-decoration: underline; /* Add underline on hover for links */
+}

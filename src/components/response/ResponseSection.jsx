@@ -5,6 +5,7 @@ import './ResponseSection.css';
 import app from '../../firebaseconfig'; // Adjust the path according to your project structure
 import {collection, getDocs, getFirestore} from 'firebase/firestore';
 import ResponseText from '../response-text/ResponseText';
+import ResponseChart from "../response-chart/ResponseChart";
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
@@ -41,6 +42,7 @@ function ResponseSection() {
         <div className="response-section">
             {/* {content.map(renderContentItem)} */}
             <ResponseText tester={localStorage.getItem('component_id')}/>
+            <ResponseChart tester={localStorage.getItem('component_id')}/>
         </div>
     );
 }

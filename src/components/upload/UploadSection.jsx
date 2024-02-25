@@ -32,19 +32,19 @@ function UploadSection({setGenerating}) {
                             timestamp: new Date(),
                             content: text,
                         });
-                        axios.post('http://172.16.131.44:55038/generate', {
-                            userId: localStorage.getItem('user_id') // Ensure the key name matches what the server expects, e.g., userId vs userID
-                        }, {
-                            headers: {
-                                'Content-Type': 'application/json', // This is a common header for JSON requests
-                            }
-                        })
-                            .then(response => {
-                                console.log(response.data);
-                            })
-                            .catch(error => {
-                                console.error('There was an error!', error);
-                            });
+                        // axios.post('http://172.16.131.44:52752/generate', {
+                        //     userId: localStorage.getItem('user_id') // Ensure the key name matches what the server expects, e.g., userId vs userID
+                        // }, {
+                        //     headers: {
+                        //         'Content-Type': 'application/json', // This is a common header for JSON requests
+                        //     }
+                        // })
+                        //     .then(response => {
+                        //         console.log(response.data);
+                        //     })
+                        //     .catch(error => {
+                        //         console.error('There was an error!', error);
+                        //     });
                         files.push(
                             {
                                 id: newFileID,

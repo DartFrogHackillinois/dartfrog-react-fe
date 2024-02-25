@@ -1,7 +1,8 @@
 import './ResponseText.css';
 import { where, query, getDocs, collection, getFirestore } from 'firebase/firestore';
 import app from '../../firebaseconfig'; // Adjust the import path as necessary
-import { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 const db = getFirestore(app);
 
 function ResponseText({tester}) {
@@ -28,7 +29,7 @@ function ResponseText({tester}) {
         <div className='response-text-container'>
             {userResponses.map((chat) => (
                 <Fragment key={chat.id}>
-                    <div>{chat.response}</div>
+                    <ReactMarkdown>{chat.response}</ReactMarkdown>
                 </Fragment>
             ))}
         </div>

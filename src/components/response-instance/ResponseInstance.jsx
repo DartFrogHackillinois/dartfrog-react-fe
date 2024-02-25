@@ -4,11 +4,12 @@ import app from '../../firebaseconfig'; // Adjust the import path as necessary
 import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 import { where, query, getDocs, collection, getFirestore } from 'firebase/firestore'
 import ChatInstance from '../chat-instance/ChatInstance';
+import ReactMarkdown from 'react-markdown';
 const db = getFirestore(app);
 const auth = getAuth(app);
 function ResponseInstance({Text}) {
 
-
+    const [userResponses, setUserResponses] = useState([]);
     var responses = [];
 
     useEffect(() => {
@@ -19,27 +20,29 @@ function ResponseInstance({Text}) {
             querySnapshot.forEach((doc) => {
                 responses.push({
                     id: String(responses.length),
-                    response: doc.data().generated_response, // Assuming 'response' is the field you want
+                    response: doc.data() // Assuming 'response' is the field you want
                 });
+                setUserResponses(responses);
             });
         };
 
         getUserResponses(); // Call the function to fetch data
     }); // Empty dependency array means this effect runs once on mount    
-    
+    var stra = "";
     const printLength = () => {
-        console.log(responses.length)
-        responses.at(0).response = "heyey";
+        
+        stra = responses[0].response.generated_response;
     }
 
     return (
-        <div>
-            <button onClick={printLength}>Print length</button>
-           {responses.map((chat) => (
+        <div className='response-instance-container'>
+           <div className='mapped-contents'>
+            {userResponses.map((chat) => (
                 <Fragment key={chat.id}>
-                    <div>{chat.response}</div>
+                    <ReactMarkdown>{chat.response.generated_response}</ReactMarkdown>    
                 </Fragment>
             ))}
+            </div>
         </div>
     );
 }
